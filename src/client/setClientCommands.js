@@ -10,7 +10,7 @@ exports.setClientCommands = (commandMap = new Discord.Collection()) => {
     delete commandFiles
 
     if (!commandFiles) 
-        throw new Error(i18n.__('commandListNotFound'))
+        throw new Error(':robot: A lista de comandos não foi encontrada :cry:')
 
     for (const file of commandFiles) {
         const command = require(`${commandsFolderName}/${file}`)

@@ -4,6 +4,7 @@ const i18n = require('../i18n')
 module.exports = {
     name: 'play',
     description: 'Play a song in your channel!',
+    icon: ':arrow_forward:',
     async execute(message) {
         try {
             const args = message.content.split(' ')
@@ -13,12 +14,12 @@ module.exports = {
             const voiceChannel = message.member.voice.channel
             if (!voiceChannel)
                 return message.channel.send(
-                    i18n.__('commandErrorsNotInVoiceChannel')
+                    ':robot: Você precisa estar em um canal de áudio para comandar o bot :bangbang:'
                 )
             const permissions = voiceChannel.permissionsFor(message.client.user)
             if (!permissions.has('CONNECT') || !permissions.has('SPEAK')) {
                 return message.channel.send(
-                    i18n.__('commandErrorsNotAllowedToSpeakInVoiceChannel')
+                    ':robot: O bot precisa de permissão para falar nesse canal de voz :bangbang:'
                 )
             }
 
@@ -54,7 +55,7 @@ module.exports = {
             } else {
                 serverQueue.songs.push(song)
                 return message.channel.send(
-                    i18n.__('commandPlayAddToQueye', { title: song.title })
+                    `:robot: O título **${song.title}** foi adicionado à fila de reprodução :fire:`
                 )
             }
         } catch (error) {
@@ -82,6 +83,6 @@ module.exports = {
             })
             .on('error', error => console.error(error))
         dispatcher.setVolumeLogarithmic(serverQueue.volume / 5)
-        serverQueue.textChannel.send(`${i18n.__('commandPlayStartPlaying')} **${song.title}**`)
+        serverQueue.textChannel.send(`:robot: Agora tocando **${song.title}** :musical_note:`)
     }
 }

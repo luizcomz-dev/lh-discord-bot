@@ -1,6 +1,6 @@
 const Discord = require('discord.js')
 const BotClient = require('./src/client')
-const path = require('path')
+
 const {
     setClientCommands
 } = require('./src/client/setClientCommands')
